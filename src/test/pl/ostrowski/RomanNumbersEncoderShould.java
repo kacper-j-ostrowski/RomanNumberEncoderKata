@@ -33,8 +33,7 @@ public class RomanNumbersEncoderShould {
 
     @Test
     @Parameters ({
-            "CM, 900",
-            "CM, 999"
+            "CM, 900"
     })
     public void encode_correctly_nine_hundreds(String expected, int number) {
         String romanNumber = romanNumbersEncoder.encode(number);
@@ -44,10 +43,24 @@ public class RomanNumbersEncoderShould {
 
     @Test
     @Parameters ({
-            "CM, 900",
-            "DCCC, 800"
+            "DCCC, 800",
+            "DCC, 700",
+            "DC, 600"
     })
     public void encode_correctly_over_five_hundreds(String expected, int number) {
+        String romanNumber = romanNumbersEncoder.encode(number);
+        assertEquals(expected, romanNumber);
+    }
+
+
+    @Test
+    @Parameters ({
+            "CCC, 300",
+            "CC, 200",
+            "C, 100",
+            "CD, 400"
+    })
+    public void encode_correctly_below_five_hundreds(String expected, int number) {
         String romanNumber = romanNumbersEncoder.encode(number);
         assertEquals(expected, romanNumber);
     }
@@ -110,6 +123,27 @@ public class RomanNumbersEncoderShould {
             "IX, 9"
     })
     public void encode_correctly_below_ten(String expected, int number) {
+        String romanNumber = romanNumbersEncoder.encode(number);
+        assertEquals(expected, romanNumber);
+    }
+
+    @Test
+    @Parameters ({
+            "IV, 4",
+            "VII, 7",
+            "XIX, 19",
+            "XL, 40",
+            "XCV, 95",
+            "CM, 900",
+            "MXXV, 1025",
+            "MCMXCV, 1995",
+            "MM, 2000",
+            "MCMLVI, 1956",
+            "MMXI, 2011",
+            "MMMDCCCLXXXVIII, 3888"
+
+    })
+    public void encode_correctly_random_numbers(String expected, int number) {
         String romanNumber = romanNumbersEncoder.encode(number);
         assertEquals(expected, romanNumber);
     }
